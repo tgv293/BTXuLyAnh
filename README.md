@@ -13,6 +13,7 @@ Các phương pháp phát hiện Deepfake hiện đại thường dựa trên c�
 Cài đặt các gói cần thiết bằng lệnh sau:
 
 ```bash
+conda create -n <env-name> (tạo môi trường ảo)
 conda install -c anaconda pandas 
 conda install -c conda-forge OpenCV
 conda install -c conda-forge gst-plugins-bad=1.24.6
@@ -21,7 +22,7 @@ conda install -c conda-forge matplotlib
 conda install -c conda-forge scikit-learn
 ```
 
-Do chúng tôi sử dụng GPU để tăng tốc các quy trình, vui lòng cài đặt xgboost bằng pip:
+Do chúng tôi sử dụng GPU để tăng tốc các quy trình, vui lòng cài đặt xgboost bằng conda:
 
 ```bash
 conda install -c conda-forge xgboost 
