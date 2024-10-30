@@ -51,16 +51,17 @@ test/
 ### Tiền Xử Lý
 
 1. Trích xuất các điểm mốc khuôn mặt bằng OpenFace. Vui lòng tham khảo [đường dẫn này](https://github.com/TadasBaltrusaitis/OpenFace) để biết thêm chi tiết.
+   (đã thực hiện và nén lại: landmarks)
    ```bash
    python landmark_extractor.py
    ```
 
-2. Căn chỉnh khuôn mặt và cắt các vùng khuôn mặt:
+3. Căn chỉnh khuôn mặt và cắt các vùng khuôn mặt: (đã thực hiện và nén lại: patches)
    ```bash
    python patch_extractor.py
    ```
 
-3. Nhận dữ liệu huấn luyện và kiểm tra:
+4. Nhận dữ liệu huấn luyện và kiểm tra:
    ```bash
    python data.py
    ```
