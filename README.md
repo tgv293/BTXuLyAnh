@@ -36,7 +36,8 @@ conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvi
 
 Bạn có thể tham khảo thêm thông tin về việc cài đặt (chọn phiên bản phù hợp) tại [trang chính thức của PyTorch](https://pytorch.org/get-started/locally/).
 
-### Dữ Liệu (https://github.com/yuezunli/celeb-deepfakeforensics)
+### Dữ Liệu (Nguồn: https://github.com/yuezunli/celeb-deepfakeforensics)
+Link Dataset đã phân chia: https://drive.google.com/file/d/1WdTzI9_J4BCWzp_oXqkukJA2XX203Ro_/view?usp=sharing
 
 Vui lòng sắp xếp video của bạn vào các thư mục theo cấu trúc sau:
 
