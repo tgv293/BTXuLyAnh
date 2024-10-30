@@ -50,7 +50,7 @@ test/
 
 ### Tiền Xử Lý
 
-1. Trích xuất các điểm mốc khuôn mặt bằng OpenFace. Vui lòng tham khảo [đường dẫn này](https://github.com/cvjena/openface) để biết thêm chi tiết.
+1. Trích xuất các điểm mốc khuôn mặt bằng OpenFace. Vui lòng tham khảo [đường dẫn này](https://github.com/TadasBaltrusaitis/OpenFace) để biết thêm chi tiết.
    ```bash
    python landmark_extractor.py
    ```
