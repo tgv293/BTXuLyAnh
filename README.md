@@ -37,8 +37,7 @@ conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvi
 Bạn có thể tham khảo thêm thông tin về việc cài đặt (chọn phiên bản phù hợp) tại [trang chính thức của PyTorch](https://pytorch.org/get-started/locally/).
 
 ### Dữ Liệu (Nguồn: https://github.com/yuezunli/celeb-deepfakeforensics)
-Link Dataset đã phân chia: https://drive.google.com/file/d/1WdTzI9_J4BCWzp_oXqkukJA2XX203Ro_/view?usp=sharing
-
+Link Dataset đã phân chia: [DATASET](https://drive.google.com/file/d/1WdTzI9_J4BCWzp_oXqkukJA2XX203Ro_/view?usp=sharing)
 Vui lòng sắp xếp video của bạn vào các thư mục theo cấu trúc sau:
 
 ```
@@ -53,12 +52,13 @@ test/
 ### Tiền Xử Lý
 
 1. Trích xuất các điểm mốc khuôn mặt bằng OpenFace. Vui lòng tham khảo [đường dẫn này](https://github.com/TadasBaltrusaitis/OpenFace) để biết thêm chi tiết.
-   (đã thực hiện và nén lại: landmarks)
+   (đã thực hiện và nén lại: [OpenFace](https://drive.google.com/file/d/1ZQzvpwbfOmBJEW6ozgfsBAsjcZtOy2jj/view?usp=drive_link))
+   (đã thực hiện và nén lại: [landmarks](https://drive.google.com/file/d/1iipLOD6UzYCpvcPSpxlSPCSHAAvXFC2J/view?usp=sharing))
    ```bash
    python landmark_extractor.py
    ```
 
-3. Căn chỉnh khuôn mặt và cắt các vùng khuôn mặt: (đã thực hiện và nén lại: patches)
+3. Căn chỉnh khuôn mặt và cắt các vùng khuôn mặt: (đã thực hiện và nén lại: [patches](https://drive.google.com/file/d/12EDUwwx-ZaBuTC-pla88zforq0-t1AuO/view?usp=sharing))
    ```bash
    python patch_extractor.py
    ```
