@@ -24,7 +24,7 @@ conda install -c conda-forge scikit-learn
 Do chúng tôi sử dụng GPU để tăng tốc các quy trình, vui lòng cài đặt xgboost bằng pip:
 
 ```bash
-pip install xgboost 
+conda install -c conda-forge xgboost 
 ```
 
 Cài đặt PyTorch:
@@ -33,9 +33,9 @@ Cài đặt PyTorch:
 conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
 ```
 
-Bạn có thể tham khảo thêm thông tin về việc cài đặt tại [trang chính thức của PyTorch](https://pytorch.org/get-started/locally/).
+Bạn có thể tham khảo thêm thông tin về việc cài đặt (chọn phiên bản phù hợp) tại [trang chính thức của PyTorch](https://pytorch.org/get-started/locally/).
 
-### Dữ Liệu
+### Dữ Liệu (https://github.com/yuezunli/celeb-deepfakeforensics)
 
 Vui lòng sắp xếp video của bạn vào các thư mục theo cấu trúc sau:
 
