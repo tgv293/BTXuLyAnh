@@ -13,6 +13,7 @@ Các phương pháp phát hiện Deepfake hiện đại thường dựa trên c�
 Cài đặt các gói cần thiết bằng lệnh sau:
 
 ```bash
+conda create -n <env-name> (tạo môi trường ảo)
 conda install -c anaconda pandas 
 conda install -c conda-forge OpenCV
 conda install -c conda-forge gst-plugins-bad=1.24.6
@@ -21,10 +22,10 @@ conda install -c conda-forge matplotlib
 conda install -c conda-forge scikit-learn
 ```
 
-Do chúng tôi sử dụng GPU để tăng tốc các quy trình, vui lòng cài đặt xgboost bằng pip:
+Do chúng tôi sử dụng GPU để tăng tốc các quy trình, vui lòng cài đặt xgboost bằng conda:
 
 ```bash
-pip install xgboost 
+conda install -c conda-forge xgboost 
 ```
 
 Cài đặt PyTorch:
@@ -33,9 +34,9 @@ Cài đặt PyTorch:
 conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
 ```
 
-Bạn có thể tham khảo thêm thông tin về việc cài đặt tại [trang chính thức của PyTorch](https://pytorch.org/get-started/locally/).
+Bạn có thể tham khảo thêm thông tin về việc cài đặt (chọn phiên bản phù hợp) tại [trang chính thức của PyTorch](https://pytorch.org/get-started/locally/).
 
-### Dữ Liệu
+### Dữ Liệu (https://github.com/yuezunli/celeb-deepfakeforensics)
 
 Vui lòng sắp xếp video của bạn vào các thư mục theo cấu trúc sau:
 
@@ -50,17 +51,18 @@ test/
 
 ### Tiền Xử Lý
 
-1. Trích xuất các điểm mốc khuôn mặt bằng OpenFace. Vui lòng tham khảo [đường dẫn này](https://github.com/cvjena/openface) để biết thêm chi tiết.
+1. Trích xuất các điểm mốc khuôn mặt bằng OpenFace. Vui lòng tham khảo [đường dẫn này](https://github.com/TadasBaltrusaitis/OpenFace) để biết thêm chi tiết.
+   (đã thực hiện và nén lại: landmarks)
    ```bash
    python landmark_extractor.py
    ```
 
-2. Căn chỉnh khuôn mặt và cắt các vùng khuôn mặt:
+3. Căn chỉnh khuôn mặt và cắt các vùng khuôn mặt: (đã thực hiện và nén lại: patches)
    ```bash
    python patch_extractor.py
    ```
 
-3. Nhận dữ liệu huấn luyện và kiểm tra:
+4. Nhận dữ liệu huấn luyện và kiểm tra:
    ```bash
    python data.py
    ```
