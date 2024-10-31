@@ -141,8 +141,7 @@ class Ensemble:
             learning_rate=0.2,
             eval_metric="auc",
             objective="binary:logistic",
-            tree_method="hist",  # Chỉnh tree_method thành hist
-            device="cuda",  # Thiết lập device là 'cuda' để chạy trên GPU
+            tree_method="hist",  # Use histogram-based algorithm
             scale_pos_weight=(len(labels[labels == 0]) / len(labels[labels == 1])),
         )
         skf = StratifiedKFold(n_splits=folds, shuffle=True, random_state=0)

@@ -22,14 +22,24 @@ class MultiChannelWiseSaab:
 
     def to_cuda(self, images):
         if torch.cuda.is_available():
-            return torch.tensor(images).cuda()  # Chuyển dữ liệu sang GPU
-        return torch.tensor(images)  # Trả về tensor CPU nếu không có GPU
+            if isinstance(images, torch.Tensor):
+                return (
+                    images.clone().detach().cuda()
+                )  # Use clone().detach() for tensors
+            else:
+                return (
+                    torch.tensor(images).clone().detach().cuda()
+                )  # Convert to tensor and move to GPU
+        if isinstance(images, torch.Tensor):
+            return images.clone().detach()  # Use clone().detach() for tensors
+        else:
+            return torch.tensor(images).clone().detach()  # Convert to tensor
 
     def fit(self, images, verbose=False):
         start = time.time()
         if verbose:
             print("===============MultiChannelWiseSaab Training===============")
-        images = self.to_cuda(images)  # Chuyển đổi sang GPU
+        images = self.to_cuda(images)  # Convert to GPU
         self.fit_hop1(images, verbose=verbose)
         for n in range(2, self.num_hop + 1):
             self.fit_hop_n(n, verbose=verbose)
@@ -55,7 +65,12 @@ class MultiChannelWiseSaab:
             if len(self.features["Hop" + str(n)]) != 0:
                 # Ensure all elements are tensors before concatenation
                 self.features["Hop" + str(n)] = [
-                    torch.tensor(feat) for feat in self.features["Hop" + str(n)]
+                    (
+                        torch.tensor(feat).clone().detach()
+                        if isinstance(feat, np.ndarray)
+                        else feat.clone().detach()
+                    )
+                    for feat in self.features["Hop" + str(n)]
                 ]
                 self.features["Hop" + str(n)] = torch.cat(
                     self.features["Hop" + str(n)], dim=3
@@ -69,23 +84,23 @@ class MultiChannelWiseSaab:
     def max_pooling(self, images):
         return block_reduce(
             images.cpu().numpy(), (1, 2, 2, 1), np.max
-        )  # Chuyển về numpy cho block_reduce
+        )  # Convert to numpy for block_reduce
 
     def fit_hop1(self, images, verbose):
         if verbose:
             print("Hop1")
             print("Input shape:", images.shape)
         saab = Saab(kernel_size=self.kernel_sizes[0], bias_flag=False)
-        saab.fit(images.cpu().numpy())  # Chuyển về numpy cho Saab
+        saab.fit(images.cpu().numpy())  # Convert to numpy for Saab
         self.saabs["Hop1"] = [saab]
         self.energies["Hop1"] = [saab.eigenvalues / sum(saab.eigenvalues)]
         n_channels = np.sum(self.energies["Hop1"][0] > self.keep_thr)
         output = saab.transform(
             images.cpu().numpy(), n_channels
-        )  # Chuyển về numpy cho Saab
+        )  # Convert to numpy for Saab
         self.features["Hop1"] = [
             self.max_pooling(torch.tensor(output).cuda())
-        ]  # Chuyển về tensor
+        ]  # Convert to tensor
         self.info["Hop1"] = [(0, 0, n_channels)]
         if verbose:
             print("Output shape:", self.features["Hop1"][-1].shape)
@@ -98,10 +113,10 @@ class MultiChannelWiseSaab:
         n_channels = self.info["Hop1"][0][2]
         output = saab.transform(
             images.cpu().numpy(), n_channels
-        )  # Chuyển về numpy cho Saab
+        )  # Convert to numpy for Saab
         self.features["Hop1"] = [
             self.max_pooling(torch.tensor(output).cuda())
-        ]  # Chuyển về tensor
+        ]  # Convert to tensor
 
     def fit_hop_n(self, n, verbose):
         if verbose:
