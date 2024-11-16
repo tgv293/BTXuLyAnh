@@ -70,7 +70,7 @@ test/
 
 ### Cách Chạy
 
-Chúng tôi sử dụng tập dữ liệu UADFV làm ví dụ để hướng dẫn bạn cách sử dụng mã của chúng tôi để huấn luyện và kiểm tra mô hình.
+Chúng tôi sử dụng tập dữ liệu Celeb-DF làm ví dụ để hướng dẫn bạn cách sử dụng mã của chúng tôi để huấn luyện và kiểm tra mô hình.
 
 ```bash
 python model.py
